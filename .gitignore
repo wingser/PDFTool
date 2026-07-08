@@ -1,8 +1,17 @@
 node_modules/
 release/
 dist/
+out/
 coverage/
 .nyc_output/
 npm-debug.log*
 tmp/
 *.tmp
+*.log
+*.zip
+*.7z
+*.rar
+.env
+.env.*
+config.json
+!config.example.json

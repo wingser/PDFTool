@@ -46,6 +46,9 @@ npm.cmd run package:win
 ```
 
 产物输出到 `release/win-unpacked/PDFTool.exe`，整个 `win-unpacked` 文件夹可拷贝到其他 Windows 电脑运行。
+构建前会自动结束正在运行的 `PDFTool.exe`，避免旧实例占用发布目录导致构建失败。
+
+GitHub Actions 会在每次 push/PR 时自动构建 Windows 绿色目录版，并把 `release/win-unpacked` 压缩成 `PDFTool-版本号-win-x64.zip` 作为构建产物上传。
 
 ## 打包单文件 portable exe
 

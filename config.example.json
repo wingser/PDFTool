@@ -1,0 +1,11 @@
+{
+  "splitSizeMb": 40,
+  "processMode": "zip",
+  "autoSend": true,
+  "smtpHost": "smtp.qq.com",
+  "smtpPort": 465,
+  "smtpSecure": true,
+  "smtpUser": "name@example.com",
+  "portableSmtpPasswordOrAuthCode": "base64:邮箱授权码的base64内容",
+  "defaultRecipientEmail": "receiver@example.com"
+}
