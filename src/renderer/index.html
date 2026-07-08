@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDFTool</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <h1>PDFTool</h1>
+          <p>按完整页拆分 PDF，或生成 ZIP 分卷，并可选逐封发送邮件附件。</p>
+        </div>
+        <div class="status-pill" id="statusPill">准备就绪</div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>输入与输出</h2>
+          <div class="button-row">
+            <button id="selectPdfBtn" type="button">选择 PDF（可多选）</button>
+            <button id="selectFolderBtn" type="button">选择文件夹</button>
+          </div>
+        </div>
+
+        <div class="mode-picker" role="radiogroup" aria-label="处理方式">
+          <label>
+            <input type="radio" name="processMode" value="pdf">
+            <span>PDF 按页分割</span>
+          </label>
+          <label>
+            <input type="radio" name="processMode" value="zip" checked>
+            <span>ZIP 分卷压缩</span>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>已选择</span>
+          <input id="inputPath" readonly placeholder="请选择 PDF 文件或文件夹">
+        </label>
+
+        <div class="grid-two">
+          <label class="field">
+            <span>分割大小 MB</span>
+            <input id="splitSizeMb" type="number" min="1" step="1" value="40">
+          </label>
+          <label class="field output-field">
+            <span>输出目录</span>
+            <div class="inline-input">
+              <input id="outputPath" readonly placeholder="自动生成输出目录">
+              <button id="selectOutputBtn" type="button">更改</button>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="panel-header">
+          <div>
+            <h2>处理进度</h2>
+            <p id="progressText">请选择文件或文件夹后开始。</p>
+          </div>
+          <button id="startBtn" class="primary" type="button">开始处理</button>
+        </div>
+        <div class="progress-row">
+          <progress id="taskProgress" max="1" value="0"></progress>
+          <span id="progressCount">0/0</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>邮件发送</h2>
+          <label class="switch">
+            <input id="autoSend" type="checkbox" checked>
+            <span>自动发送</span>
+          </label>
+        </div>
+
+        <div class="grid-two">
+          <label class="field">
+            <span>SMTP 服务器</span>
+            <input id="smtpHost" placeholder="例如 smtp.qq.com">
+          </label>
+          <label class="field">
+            <span>SMTP 端口</span>
+            <input id="smtpPort" type="number" min="1" value="465">
+          </label>
+          <label class="field">
+            <span>发件邮箱</span>
+            <input id="smtpUser" placeholder="name@example.com">
+          </label>
+          <label class="field">
+            <span>授权码或密码</span>
+            <input id="smtpPassword" type="password" placeholder="邮箱授权码">
+          </label>
+          <label class="field">
+            <span>目标邮箱</span>
+            <input id="recipientEmail" placeholder="receiver@example.com">
+          </label>
+          <label class="check-field">
+            <input id="smtpSecure" type="checkbox" checked>
+            <span>使用 SSL/TLS</span>
+          </label>
+        </div>
+
+        <div class="mail-actions">
+          <div id="mailNotice" class="inline-notice" role="status" aria-live="polite"></div>
+          <div class="button-row">
+            <button id="saveConfigBtn" type="button">保存配置</button>
+            <button id="testMailBtn" type="button">测试邮箱</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="panel-header">
+          <h2>结果</h2>
+          <button id="clearResultsBtn" type="button">清空</button>
+        </div>
+        <div id="results" class="results empty">暂无结果</div>
+      </section>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

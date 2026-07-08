@@ -1,0 +1,8 @@
+node_modules/
+release/
+dist/
+coverage/
+.nyc_output/
+npm-debug.log*
+tmp/
+*.tmp

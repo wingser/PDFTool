@@ -1,0 +1,55 @@
+{
+  "name": "pdftool",
+  "version": "0.1.0",
+  "description": "Windows desktop PDF splitter with optional SMTP sending.",
+  "main": "src/main/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check src/main/main.js && node --check src/main/preload.js && node --check src/main/configStore.js && node --check src/main/mailService.js && node --check src/main/pdfSplitter.js && node --check src/main/zipVolumeSplitter.js && node --check src/main/splitTaskRunner.js && node --check src/renderer/renderer.js",
+    "test": "node --test tests/*.test.js",
+    "package:win": "electron-builder --win dir",
+    "package:portable": "electron-builder --win portable",
+    "dist": "electron-builder --win portable"
+  },
+  "keywords": [
+    "pdf",
+    "electron",
+    "splitter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.16",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.local.pdftool",
+    "productName": "PDFTool",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "PDFTool-${version}-portable.exe"
+    }
+  }
+}
